@@ -1,5 +1,5 @@
 # ptfe-demo-mode
-This repo is guideline on HOW TO DO:
+This repo is guideline on:
 - TFE version 4 demo install
 - TFE version 4 restore from snapshot
 
@@ -62,20 +62,50 @@ cd /vagrant
 curl https://install.terraform.io/ptfe/stable | sudo bash
 ```
 - Choose interface for TFE
-![](https://github.com/berchev/ptfe-demo-mode/blob/master/screenshots/1.png)
-
+```bash
+vagrant@ptfe:/vagrant# curl https://install.terraform.io/ptfe/stable | sudo bash
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  134k  100  134k    0     0  46190      0  0:00:02  0:00:02 --:--:-- 46175
+Determining local address
+The installer was unable to automatically detect the private IP address of this machine.
+Please choose one of the following network interfaces:
+[0] enp0s3	10.0.2.15
+[1] enp0s8	192.168.56.33
+Enter desired number (0-1): 1
+```
 - Just hit enter on this step
-![](https://github.com/berchev/ptfe-demo-mode/blob/master/screenshots/2.png)
-
+```bash
+The installer will use network interface 'enp0s8' (with IP address '192.168.56.33').
+Determining service address
+The installer was unable to automatically detect the service IP address of this machine.
+Please enter the address or leave blank for unspecified.
+Service IP address: 
+```
 - Type `N` or hit enter, if you do not use proxy
-![](https://github.com/berchev/ptfe-demo-mode/blob/master/screenshots/3.png)
-
+```
+Does this machine require a proxy to access the Internet? (y/N) 
+Installing docker version 18.09.2 from https://get.replicated.com/docker-install.sh
+# Executing docker install script, commit: UNKNOWN
++ sh -c apt-get update -qq >/dev/null
++ sh -c apt-get install -y -qq apt-transport-https ca-certificates curl >/dev/null
+```
 - Script will continue, installing Docker from Replicated site and pulling latest stable Replicated UI image
 - Once script finish successfully, you will see following:
-![](https://github.com/berchev/ptfe-demo-mode/blob/master/screenshots/4.png)
+```bash
+Created symlink /etc/systemd/system/docker.service.wants/replicated-operator.service → /etc/systemd/system/replicated-operator.service.
+
+Operator installation successful
+
+To continue the installation, visit the following URL in your browser:
+
+  http://<this_server_address>:8800
+
+vagrant@ptfe:/vagrant#
+```
 
 - Open your browser and type: `https://192.168.56.33:8800`, in oder to continue with the installation on UI
-- Click on `Advanced`
+- Click on `Advanced`, since we are using self-signed certificate
 ![](https://github.com/berchev/ptfe-demo-mode/blob/master/screenshots/5.png)
 
 - Then click on `Proceed to 192.168.56.33 (unsafe)`
@@ -99,7 +129,7 @@ curl https://install.terraform.io/ptfe/stable | sudo bash
 - After all the checks are passed, click on `Continue`
 ![](https://github.com/berchev/ptfe-demo-mode/blob/master/screenshots/12.png)
 
-- On the next screen type your password, and choose `Demo` for installation type and click `Save` on the bottom of the page
+- On the next screen type the password you would like to use for data encryption, and choose `Demo` for installation type and click `Save` on the bottom of the page
 ![](https://github.com/berchev/ptfe-demo-mode/blob/master/screenshots/13.png)
 
 - Then click on `take me to the dashboard`
@@ -151,20 +181,52 @@ cd /vagrant
 ```
 curl https://install.terraform.io/ptfe/stable | sudo bash
 ```
-- When the installer asks for private IP of the machine, choose "1"
-![](https://github.com/berchev/ptfe-demo-mode/blob/master/screenshots/18.png)
+- When the installer asks for private IP of the machine, choose `1`
+```
+vagrant@ptfe:/vagrant# curl https://install.terraform.io/ptfe/stable | sudo bash
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  134k  100  134k    0     0  46190      0  0:00:02  0:00:02 --:--:-- 46175
+Determining local address
+The installer was unable to automatically detect the private IP address of this machine.
+Please choose one of the following network interfaces:
+[0] enp0s3	10.0.2.15
+[1] enp0s8	192.168.56.33
+[2] docker0 172.17.0.1
+Enter desired number (0-2): 1
+```
 
 - Hit `enter` on the next question
-![](https://github.com/berchev/ptfe-demo-mode/blob/master/screenshots/19.png)
+```
+The installer will use network interface 'enp0s8' (with IP address '192.168.56.33').
+Determining service address
+The installer was unable to automatically detect the service IP address of this machine.
+Please enter the address or leave blank for unspecified.
+Service IP address: 
+```
 
 - Choose `N` or hit `enter` about proxy option and wait the process to complete
-![](https://github.com/berchev/ptfe-demo-mode/blob/master/screenshots/20.png)
+```
+Does this machine require a proxy to access the Internet? (y/N) N
+Installing docker version 18.09.2 from https://get.replicated.com/docker-install.sh
+# Executing docker install script, commit: UNKNOWN
++ sh -c apt-get update -qq >/dev/null
++ sh -c apt-get install -y -qq apt-transport-https ca-certificates curl >/dev/null
+```
 
 - After Replicated is installed successfully, you will see these line on the bottom of the screen:
-![](https://github.com/berchev/ptfe-demo-mode/blob/master/screenshots/21.png)
+```
+Operator installation successful
+
+To continue the installation, visit the following URL in your browser:
+
+  http://<this_server_address>:8800
+
+vagrant@ptfe:/vagrant#
+```
 
 - Open your browser and type: `https://192.168.56.33:8800`, in oder to continue on UI
-- Click on `Advanced`
+- Click on `Advanced`, in order to accept the self-signed sertificate
 ![](https://github.com/berchev/ptfe-demo-mode/blob/master/screenshots/5.png)
 
 - On the next screen add the FQDN: `192.168.56.33.xip.io` and click on `Use Self-Signed Sert`
@@ -173,7 +235,7 @@ curl https://install.terraform.io/ptfe/stable | sudo bash
 - Click on `Advanced` and `Proceed to 192.168.56.33 (unsafe)`
 ![](https://github.com/berchev/ptfe-demo-mode/blob/master/screenshots/8.png)
 
-- On the next screen choose `Restore from snapshot`
+- On the next screen choose `Restore from a snapshot`
 ![](https://github.com/berchev/ptfe-demo-mode/blob/master/screenshots/22.png)
 
 - Click on `Browse snapshots` button 
